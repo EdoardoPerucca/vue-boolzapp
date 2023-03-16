@@ -14,6 +14,7 @@
 #view-container header {
     width: 30%;
     height: 100%;
+     overflow-y: auto;
 }
 
 #view-container header #header-top {
@@ -59,14 +60,29 @@
     display: flex;
     gap: 15px;
     padding: .8em;
-    width: 100%;
     background-color: #fafafa;
     margin: .5em;
 }
 
 #header-search-icon {
-    color:#eaeaea;
-    
+    color:#eaeaea;   
+}
+
+#header-user {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    padding: .8em;
+}
+
+#header-user-card {
+    display: flex;
+    gap: 1em;
+}
+
+#header-user-img {
+    width: 5em;
+    border-radius: 50%;
 }
 
 
@@ -107,6 +123,20 @@
 #main-top-center {
     display: flex;
     flex-grow: 1;
+}
+
+#main-chat {
+    padding: 4em;
+    width: 100%;
+    height: 100%;
+}
+
+#main-chat-right {
+    background-color: green;
+}
+
+#main-chat-left {
+    background-color: white;
 }
 
 #view-container main #main-bottom {

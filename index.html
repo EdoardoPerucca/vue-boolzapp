@@ -39,13 +39,28 @@
                     <div id="header-search-icon">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
-                    <nav id="header-search-nav">
+
+                    <div id="header-search-nav">
                         inserisci un nome
-                    </nav>
-        
+                    </div>
+                    
+                </div>
+
+                
+                <div id="header-user">
+             
+                    <div id="header-user-card" v-for="user in contacts">
+                        <img id="header-user-img" v-bind:src="user.avatar" alt="user">
+                        <div id="header-user-text">
+                            {{ user.name }}
+                        </div>
+                    </div>
+                   
                 </div>
 
             </header>
+
+
 
             <main>
                 <div id="main-top">
@@ -56,6 +71,18 @@
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <i class="fa-solid fa-paperclip"></i>
                         <i class="fa-solid fa-bars"></i>
+                    </div>
+
+                </div>
+
+                <div id="main-chat">
+
+                    <div id="main-chat-left" v-for="chat in contacts.messages">
+                        {{ chat.message }}
+                    </div>
+
+                    <div id="main-chat-right">
+                        pane
                     </div>
 
                 </div>
