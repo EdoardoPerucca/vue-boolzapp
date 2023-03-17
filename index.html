@@ -49,10 +49,16 @@
                 
                 <div id="header-user">
              
-                    <div id="header-user-card" v-for="user in contacts">
-                        <img id="header-user-img" v-bind:src="user.avatar" alt="user">
-                        <div id="header-user-text">
-                            {{ user.name }}
+                    <div id="header-user-card" v-for="(user, index) in contacts" @click="changeUserIndex(index)">
+                            <img id="header-user-img" v-bind:src="user.avatar" alt="user">
+                        
+                        <div id="header-user-detail">
+                            <div id="header-user-text">
+                                {{ user.name }}
+                            </div>
+                            <div id="header-user-last-message">
+                                Ultimo messaggio
+                            </div>
                         </div>
                     </div>
                    
@@ -77,12 +83,11 @@
 
                 <div id="main-chat">
 
-                    <div id="main-chat-left" v-for="chat in contacts.messages">
-                        {{ chat.message }}
-                    </div>
-
-                    <div id="main-chat-right">
-                        pane
+                    <div id="main-chat-message" v-for="chat in contacts[activeUserIndex].messages" :class="chat.status">
+                            {{ chat.message }}
+                        <div class="message-time">
+                            {{ chat.date }}
+                        </div>
                     </div>
 
                 </div>
