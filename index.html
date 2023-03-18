@@ -39,17 +39,15 @@
                     <div id="header-search-icon">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
-
-                    <div id="header-search-nav">
-                        inserisci un nome
-                    </div>
-                    
+                                       
+                    <input id="header-search-nav" type="text" v-model="search" placeholder="Inserisci un nome">
+                                    
                 </div>
 
                 
                 <div id="header-user">
              
-                    <div id="header-user-card" v-for="(user, index) in contacts" @click="changeUserIndex(index)">
+                    <div id="header-user-card" v-for="(user, index) in userFilterSearch" :class="index == activeUserIndex ? 'active' : '' " @click="changeUserIndex(index)">
                             <img id="header-user-img" v-bind:src="user.avatar" alt="user">
                         
                         <div id="header-user-detail">
@@ -71,7 +69,16 @@
             <main>
                 <div id="main-top">
 
-                    <div id="main-top-left"></div>
+                    <div id="main-top-left">
+                        <img id="main-top-left-img" :src="contacts[activeUserIndex].avatar" alt="user">
+                        
+                        <div id="main-top-left-detail">
+                            <div id="header-user-text">
+                                {{ contacts[activeUserIndex].name }}
+                            </div>
+                           
+                        </div>
+                    </div>
                     <div id="main-top-center"></div>
                     <div id="main-top-right">
                         <i class="fa-solid fa-magnifying-glass"></i>
@@ -84,11 +91,19 @@
                 <div id="main-chat">
 
                     <div id="main-chat-message" v-for="chat in contacts[activeUserIndex].messages" :class="chat.status">
-                            {{ chat.message }}
+                            {{ chat.message }} 
+                            
+                            
                         <div class="message-time">
                             {{ chat.date }}
                         </div>
+
+                        
                     </div>
+                    
+                    </div>
+                        {{ newMessage }}
+                    <div>
 
                 </div>
 
@@ -98,9 +113,9 @@
                     <div id="main-bottom-left">
                         <i class="fa-regular fa-face-smile"></i>
                     </div>
-                    <div id="main-bottom-center">
-                        Scrivi
-                    </div>
+                    
+                    <input id="main-bottom-center" type="text" @keyup.enter="addNewMessage()" v-model="newMessage" placeholder="Scrivi un messaggio">
+                    
                     <div id="main-bottom-right">
                         <i class="fa-solid fa-microphone"></i>
                     </div>
