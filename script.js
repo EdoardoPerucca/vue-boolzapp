@@ -35,6 +35,8 @@ const { createApp } = Vue
       return {
 
         search: '',
+
+        newMessage: '',
         
         contacts: [
           {
@@ -203,22 +205,15 @@ const { createApp } = Vue
     
       activeUserIndex: 0,
         
-      newMessage: '',
+      userNewMessage: '',
+
+      contactSearch: '',
         
       }
     },
 
 
-    computed: {
-        
-        userFilterSearch() {
-            if (this.search.trim().lenght > 0) {
-                return this.contacts.filter((user) => user.name.includes (this.search.trim()))
-            }
-            return this.contacts
-
-        },
-    },
+   
     
 
     methods: {
@@ -227,20 +222,55 @@ const { createApp } = Vue
         changeUserIndex(changeIndex) {
             this.activeUserIndex = changeIndex;
             
-    },
+        },
 
-    addNewMessage() {
-        this.contacts.push(this.newMessage);
-        console.log(this.newMessage)
+        addNewMessage() {
         
-    },
-    
-    
-    
-    
-    
-   }
+            const newMessage = {
+                date: '10/01/2020 15:50:00',
+                message: this.userNewMessage,
+                status: 'sent'
+            };
+        
+
+            this.contacts[this.activeUserIndex].messages.push(newMessage);
+
+            this.userNewMessage = ''
 
 
+            const userReply = {
+                date: '10/01/2020 15:50:00',
+                message: 'ok',
+                status: 'receive'
+            };
 
-  }).mount('#app')
+            setTimeout(() => {
+                this.contacts[this.activeUserIndex].messages.push(userReply);
+            }, 1000);
+        
+        },
+
+
+        userSearch() {
+
+            this.contacts.forEach(user => {
+                
+                if(user.name.toLowerCase().includes(this.contactSearch.toLowerCase())) {
+                    user.visible = true;
+
+                } else {
+                    user.visible = false;
+                }
+
+            });
+
+        },
+
+
+        deleteMessageUser(userIndexMessage) {
+            this.contacts[this.activeUserIndex].messages.splice(userIndexMessage);
+        },
+
+    }
+
+}).mount('#app')
