@@ -208,24 +208,33 @@ const { createApp } = Vue
       userNewMessage: '',
 
       contactSearch: '',
-        
-      }
-    },
+      
+      
+    }
+},
 
 
-   
-    
 
-    methods: {
-        
-        // cambia indice user corrispondente al click
-        changeUserIndex(changeIndex) {
-            this.activeUserIndex = changeIndex;
+
+
+methods: {
+
             
+    // cambia indice user corrispondente al click
+        changeUserIndex(changeIndex) {
+            this.activeUserIndex = changeIndex;     
         },
 
+   
         addNewMessage() {
-        
+            
+            // messaggio input vuoto
+            if(this.userNewMessage == '') {
+                alert('inserisci un testo');
+                return false;
+            }
+            
+            
             const newMessage = {
                 date: '10/01/2020 15:50:00',
                 message: this.userNewMessage,
@@ -247,7 +256,7 @@ const { createApp } = Vue
             setTimeout(() => {
                 this.contacts[this.activeUserIndex].messages.push(userReply);
             }, 1000);
-        
+
         },
 
 
